@@ -113,4 +113,58 @@ class EnrollmentServiceTest {
         assert(exception.message == "수강 신청 기간이 마감되었습니다.")
         assert(!enrollment.isAttended)
     }
+
+    @Test
+    fun `should return true when enrolled`() {
+        // given
+        val user = User()
+        user.id = 1
+        val lesson = Lesson(30, 0, LocalDate.of(2024, 4, 20))
+        lesson.id = 1
+        val enrollment = Enrollment.newInstance(user, lesson)
+        enrollment.id = 1
+        val mockUserRepository = mock<UserRepository> {
+            on { findById(any()) } doReturn user
+        }
+        val mockLessonRepository = mock<LessonRepository> {
+            on { findById(any()) } doReturn lesson
+        }
+        val mockEnrollmentRepository = mock<EnrollmentRepository> {
+            on { findIsAttendedByUserAndLesson(any(), any()) } doReturn true
+        }
+        val enrollmentService = EnrollmentService(mockUserRepository, mockLessonRepository, mockEnrollmentRepository)
+
+        // when
+        val isEnrolled = enrollmentService.isEnrolled(user.id!!, lesson.id!!)
+
+        // then
+        assert(isEnrolled)
+    }
+
+    @Test
+    fun `should return false when not enrolled`() {
+        // given
+        val user = User()
+        user.id = 1
+        val lesson = Lesson(30, 0, LocalDate.of(2024, 4, 20))
+        lesson.id = 1
+        val enrollment = Enrollment.newInstance(user, lesson)
+        enrollment.id = 1
+        val mockUserRepository = mock<UserRepository> {
+            on { findById(any()) } doReturn user
+        }
+        val mockLessonRepository = mock<LessonRepository> {
+            on { findById(any()) } doReturn lesson
+        }
+        val mockEnrollmentRepository = mock<EnrollmentRepository> {
+            on { findIsAttendedByUserAndLesson(any(), any()) } doReturn false
+        }
+        val enrollmentService = EnrollmentService(mockUserRepository, mockLessonRepository, mockEnrollmentRepository)
+
+        // when
+        val isEnrolled = enrollmentService.isEnrolled(user.id!!, lesson.id!!)
+
+        // then
+        assert(!isEnrolled)
+    }
 }
