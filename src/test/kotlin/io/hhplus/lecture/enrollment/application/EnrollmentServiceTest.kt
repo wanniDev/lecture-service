@@ -23,6 +23,7 @@ class EnrollmentServiceTest {
      * 3. 신청일자가 마감일자를 넘지 않는지 확인한다.
      * 3. 제한수와 마감일자를 넘지 않으면, 성공
      * 4. 제한수 혹은 마감일자를 넘으면, 실패
+     * 5. 수강 신청 성공시, 수강신청 성공여부 true
      */
     @Test
     fun `should enroll`() {
@@ -49,5 +50,6 @@ class EnrollmentServiceTest {
 
         // then
         verify(mockEnrollmentRepository).save(any())
+        assert(enrollment.isAttended)
     }
 }

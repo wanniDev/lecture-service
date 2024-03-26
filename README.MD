@@ -61,5 +61,6 @@
    - 선착순에 해당하는 순번으로 등록되어 있지 않을 경우, 실패를 반환합니다.
 
 ## ERD
+(ERD 변경사항 반영하기...)
 ![lecture drawio](https://github.com/wanniDev/lecture-service/assets/81374655/5fa94c19-2619-4363-8d9a-a535b13b90da)
 

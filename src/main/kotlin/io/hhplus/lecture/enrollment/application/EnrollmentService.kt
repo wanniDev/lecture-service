@@ -16,11 +16,12 @@ class EnrollmentService(
         val user = userRepository.findById(userId)
         val lesson = lessonRepository.findById(lessonId)
 
+        val enrollment = enrollmentRepository.save(Enrollment.newInstance(user, lesson))
         when {
             lesson.isFull() -> throw IllegalStateException("수강 신청이 마감되었습니다.")
             lesson.isClosed() -> throw IllegalStateException("수강 신청 기간이 마감되었습니다.")
         }
         lesson.increaseCurrentEnrolledCount()
-        enrollmentRepository.save(Enrollment.newInstance(user, lesson))
+        enrollment.isAttended = true
     }
 }

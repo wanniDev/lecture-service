@@ -11,7 +11,8 @@ class Enrollment(
     val user: User,
     @ManyToOne
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")
-    val lesson: Lesson
+    val lesson: Lesson,
+    var isAttended: Boolean = false
 ) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
