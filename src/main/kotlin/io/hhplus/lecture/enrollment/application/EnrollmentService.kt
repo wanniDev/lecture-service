@@ -24,4 +24,10 @@ class EnrollmentService(
         lesson.increaseCurrentEnrolledCount()
         enrollment.isAttended = true
     }
+
+    fun isEnrolled(userId: Long, lessonId: Long): Boolean {
+        val user = userRepository.findById(userId)
+        val lesson = lessonRepository.findById(lessonId)
+        return enrollmentRepository.findIsAttendedByUserAndLesson(user, lesson)
+    }
 }
