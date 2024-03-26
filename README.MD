@@ -62,5 +62,6 @@
 
 ## ERD
 (ERD 변경사항 반영하기...)
+- 수강신청 테이블에 수강신청 성공여부 컬럼 추가 
 ![lecture drawio](https://github.com/wanniDev/lecture-service/assets/81374655/5fa94c19-2619-4363-8d9a-a535b13b90da)
 
