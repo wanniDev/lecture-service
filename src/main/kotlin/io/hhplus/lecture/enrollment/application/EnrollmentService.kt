@@ -5,8 +5,10 @@ import io.hhplus.lecture.enrollment.domain.EnrollmentRepository
 import io.hhplus.lecture.lesson.domain.LessonRepository
 import io.hhplus.lecture.user.domain.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class EnrollmentService(
     private val userRepository: UserRepository,
     private val lessonRepository: LessonRepository,
