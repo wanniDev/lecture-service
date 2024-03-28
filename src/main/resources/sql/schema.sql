@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS `lecture`;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE lesson (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `limit` BIGINT NOT NULL,
+    enroll_count BIGINT NOT NULL,
+    due_date DATE NOT NULL
+);
+
+CREATE TABLE enrollment (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    lesson_id BIGINT NOT NULL,
+    is_attended BOOLEAN NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES `user`(id),
+    FOREIGN KEY (lesson_id) REFERENCES lesson(id)
+);
+
