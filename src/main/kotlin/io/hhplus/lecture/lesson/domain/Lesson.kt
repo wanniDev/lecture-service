@@ -8,12 +8,12 @@ import java.time.LocalDate
 
 @Entity
 class Lesson(
-    val limit: Long,
+    val maximum: Long,
     var enrollCount: Long,
     val dueDate: LocalDate
 ) {
     fun isFull(): Boolean {
-        return limit <= enrollCount
+        return maximum <= enrollCount
     }
 
     fun isClosed(): Boolean {
