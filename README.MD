@@ -61,7 +61,26 @@
    - 선착순에 해당하는 순번으로 등록되어 있지 않을 경우, 실패를 반환합니다.
 
 ## ERD
-(ERD 변경사항 반영하기...)
-- 수강신청 테이블에 수강신청 성공여부 컬럼 추가 
-![lecture drawio](https://github.com/wanniDev/lecture-service/assets/81374655/5fa94c19-2619-4363-8d9a-a535b13b90da)
+
+```SQL
+CREATE TABLE IF NOT EXISTS `user` (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS lesson (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    maximum BIGINT NOT NULL,
+    enroll_count BIGINT NOT NULL,
+    due_date DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS enrollment (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    lesson_id BIGINT NOT NULL,
+    is_attended BOOLEAN NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES `user`(id),
+    FOREIGN KEY (lesson_id) REFERENCES lesson(id)
+);
+```
 
