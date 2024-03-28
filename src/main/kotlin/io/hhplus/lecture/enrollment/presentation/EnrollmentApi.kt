@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("v1/enrollments")
+@RequestMapping("v1/enrollment")
 class EnrollmentApi(
     private val enrollmentService: EnrollmentService
 ) {
