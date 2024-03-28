@@ -10,6 +10,6 @@ class LessonRepositoryComposition(
     private val jpaLessonRepository: JpaLessonRepository,
 ): LessonRepository {
     override fun findById(id: Long): Lesson {
-        return jpaLessonRepository.getReferenceById(id)
+        return jpaLessonRepository.findLessonById(id)
     }
 }

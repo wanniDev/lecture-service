@@ -10,6 +10,6 @@ class UserRepositoryComposition(
     private val jpaUserRepository: JpaUserRepository
 ): UserRepository {
     override fun findById(id: Long): User {
-        return jpaUserRepository.getReferenceById(id)
+        return jpaUserRepository.findUserById(id)
     }
 }
